@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.asaderola75.R
+import com.example.asaderola75.api.SessionManager
 import com.example.asaderola75.viewmodel.AuthViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -27,8 +28,9 @@ class LoginActivity : AppCompatActivity() {
             viewModel.login(login, password)
         }
 
-        viewModel.token.observe(this) {
+        viewModel.token.observe(this) { token ->
             Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
+            SessionManager(this).saveToken(token)
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()

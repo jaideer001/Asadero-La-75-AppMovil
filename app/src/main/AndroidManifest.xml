@@ -14,22 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AsaderoLa75"
         android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".ui.screens.UsuariosActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AsaderoLa75"/>
+
         <activity
             android:name=".ui.screens.HomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AsaderoLa75"/>
+
         <activity
             android:name=".ui.screens.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AsaderoLa75">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
     </application>
 
 </manifest>
