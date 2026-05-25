@@ -16,6 +16,11 @@
         android:usesCleartextTraffic="true">
 
         <activity
+            android:name=".ui.screens.RolesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AsaderoLa75"/>
+
+        <activity
             android:name=".ui.screens.UsuariosActivity"
             android:exported="false"
             android:theme="@style/Theme.AsaderoLa75"/>

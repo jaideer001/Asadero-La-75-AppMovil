@@ -48,4 +48,12 @@
         android:inputType="textPassword"
         android:layout_marginBottom="12dp"/>
 
+    <Spinner
+        android:id="@+id/spinnerRol"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/carbon3"
+        android:popupBackground="@color/carbon2"
+        android:layout_marginBottom="12dp"/>
+
 </LinearLayout>

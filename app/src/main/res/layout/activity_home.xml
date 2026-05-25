@@ -1,156 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/carbon"
-    android:padding="20dp">
+    android:background="@color/carbon">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="🍗"
-            android:textSize="28sp"
-            android:gravity="center"
-            android:layout_marginEnd="12dp"/>
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="24dp"
+            android:background="@drawable/bg_login_header">
 
-            <TextView
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🍗 Asadero La 75"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bienvenido, Admin"
+                    android:textSize="13sp"
+                    android:textColor="#CCFFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnCerrarSesion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Asadero La 75"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_light"/>
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bienvenido, Admin"
-                android:textSize="11sp"
-                android:textColor="@color/text_muted"/>
+                <TextView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="⏻"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_logout_btn"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salir"
+                    android:textSize="10sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#CCFFFFFF"/>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Módulos"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_light"
+                android:layout_marginBottom="16dp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+
+                <LinearLayout
+                    android:id="@+id/btnUsuarios"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_card_modern"
+                    android:elevation="4dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👥"
+                        android:textSize="44sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Usuarios"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_light"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnRoles"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_card_modern"
+                    android:elevation="4dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔑"
+                        android:textSize="44sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Roles"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_light"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnProductos"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_card_modern"
+                    android:elevation="4dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🍗"
+                        android:textSize="44sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Productos"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_light"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnVentas"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_card_modern"
+                    android:elevation="4dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🧾"
+                        android:textSize="44sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ventas"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_light"/>
+
+                </LinearLayout>
+
+            </GridLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/btnUsuarios"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@drawable/bg_menu_item"
-        android:padding="16dp"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="👥  Usuarios"
-            android:textSize="14sp"
-            android:textColor="@color/text_light"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="›"
-            android:textSize="20sp"
-            android:textColor="@color/fire"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btnProductos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@drawable/bg_menu_item"
-        android:padding="16dp"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="🍗  Productos"
-            android:textSize="14sp"
-            android:textColor="@color/text_light"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="›"
-            android:textSize="20sp"
-            android:textColor="@color/fire"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btnVentas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@drawable/bg_menu_item"
-        android:padding="16dp"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="🧾  Ventas"
-            android:textSize="14sp"
-            android:textColor="@color/text_light"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="›"
-            android:textSize="20sp"
-            android:textColor="@color/fire"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btnCerrarSesion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@drawable/bg_menu_item"
-        android:padding="16dp"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="🚪  Cerrar sesión"
-            android:textSize="14sp"
-            android:textColor="@color/inactive_text"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="›"
-            android:textSize="20sp"
-            android:textColor="@color/fire"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

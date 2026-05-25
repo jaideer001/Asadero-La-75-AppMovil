@@ -17,6 +17,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, UsuariosActivity::class.java))
         }
 
+        findViewById<LinearLayout>(R.id.btnRoles).setOnClickListener {
+            startActivity(Intent(this, RolesActivity::class.java))
+        }
+
         findViewById<LinearLayout>(R.id.btnCerrarSesion).setOnClickListener {
             SessionManager(this).clearToken()
             val intent = Intent(this, LoginActivity::class.java)

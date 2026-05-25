@@ -1,5 +1,6 @@
 package com.example.asaderola75.api
 
+import com.example.asaderola75.models.RolesResponse
 import com.example.asaderola75.models.UsuariosResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -41,6 +42,34 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Response<MessageResponse>
+
+    @GET("roles")
+    suspend fun getRoles(@Header("Authorization") token: String): Response<RolesResponse>
+
+    @POST("roles")
+    suspend fun createRol(
+        @Header("Authorization") token: String,
+        @Body body: CreateRolRequest
+    ): Response<MessageResponse>
+
+    @PUT("roles/{id}")
+    suspend fun updateRol(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Body body: UpdateRolRequest
+    ): Response<MessageResponse>
+
+    @DELETE("roles/{id}")
+    suspend fun deleteRol(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
+
+    @POST("roles/{id}/toggle-estado")
+    suspend fun toggleEstadoRol(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
 }
 
 data class LoginRequest(
@@ -69,6 +98,18 @@ data class UpdateUsuarioRequest(
     val contrasena: String?,
     val id_rol: Int,
     val estado: Int
+)
+
+data class CreateRolRequest(
+    val nombre: String,
+    val descripcion: String?,
+    val status: Int
+)
+
+data class UpdateRolRequest(
+    val nombre: String,
+    val descripcion: String?,
+    val status: Int
 )
 
 data class MessageResponse(

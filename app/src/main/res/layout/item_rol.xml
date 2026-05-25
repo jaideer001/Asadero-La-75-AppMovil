@@ -3,29 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/bg_card_modern"
-    android:elevation="2dp"
-    android:padding="16dp"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginBottom="12dp">
+    android:background="@drawable/bg_menu_item"
+    android:padding="14dp"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginBottom="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="12dp">
-
-        <TextView
-            android:id="@+id/tvAvatar"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/bg_avatar"
-            android:layout_marginEnd="12dp"/>
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -37,19 +25,12 @@
                 android:id="@+id/tvNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_light"/>
 
             <TextView
-                android:id="@+id/tvUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@color/text_muted"/>
-
-            <TextView
-                android:id="@+id/tvCorreo"
+                android:id="@+id/tvDescripcion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
@@ -61,18 +42,11 @@
             android:id="@+id/tvEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="11sp"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="4dp"
+            android:textSize="10sp"
+            android:padding="4dp"
             android:background="@drawable/bg_badge_active"/>
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/carbon3"
-        android:layout_marginBottom="12dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,7 +60,7 @@
             android:layout_weight="1"
             android:text="Editar"
             android:textSize="11sp"
-            android:textColor="@color/accent_blue"
+            android:textColor="@color/text_light"
             android:backgroundTint="@color/carbon3"
             android:layout_marginEnd="6dp"/>
 
@@ -97,8 +71,8 @@
             android:layout_weight="1"
             android:text="Estado"
             android:textSize="11sp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/accent_blue"
+            android:textColor="#64B5F6"
+            android:backgroundTint="#1A2A3A"
             android:layout_marginEnd="6dp"/>
 
         <Button
@@ -108,8 +82,8 @@
             android:layout_weight="1"
             android:text="Eliminar"
             android:textSize="11sp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/accent_pink"/>
+            android:textColor="@color/inactive_text"
+            android:backgroundTint="@color/inactive_bg"/>
 
     </LinearLayout>
 

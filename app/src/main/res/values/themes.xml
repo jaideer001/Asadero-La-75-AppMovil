@@ -3,15 +3,22 @@
     <style name="Theme.AsaderoLa75" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/carbon</item>
         <item name="android:textColor">@color/text_light</item>
-        <item name="colorPrimary">@color/fire</item>
-        <item name="colorPrimaryDark">@color/fire_dark</item>
-        <item name="colorAccent">@color/fire</item>
+        <item name="android:statusBarColor">@color/accent_blue</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorPrimaryDark">@color/accent_blue</item>
+        <item name="colorAccent">@color/accent_blue</item>
     </style>
 
-    <style name="DialogOscuro" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="android:background">@color/carbon2</item>
+    <style name="DialogOscuro" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/white</item>
         <item name="android:textColor">@color/text_light</item>
-        <item name="colorPrimary">@color/fire</item>
-        <item name="colorAccent">@color/fire</item>
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorAccent">@color/accent_blue</item>
+    </style>
+
+    <style name="SpinnerOscuro" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@color/carbon3</item>
+        <item name="android:textColor">@color/text_light</item>
     </style>
 </resources>
