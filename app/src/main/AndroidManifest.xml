@@ -16,6 +16,21 @@
         android:usesCleartextTraffic="true">
 
         <activity
+            android:name=".ui.screens.ProductosActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AsaderoLa75"/>
+
+        <activity
+            android:name=".ui.screens.ProveedoresActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AsaderoLa75"/>
+
+        <activity
+            android:name=".ui.screens.CategoriasActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AsaderoLa75"/>
+
+        <activity
             android:name=".ui.screens.RolesActivity"
             android:exported="false"
             android:theme="@style/Theme.AsaderoLa75"/>

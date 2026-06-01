@@ -21,6 +21,18 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, RolesActivity::class.java))
         }
 
+        findViewById<LinearLayout>(R.id.btnProductos).setOnClickListener {
+            startActivity(Intent(this, CategoriasActivity::class.java))
+        }
+
+        findViewById<LinearLayout>(R.id.btnVentas).setOnClickListener {
+            startActivity(Intent(this, ProductosActivity::class.java))
+        }
+
+        findViewById<LinearLayout>(R.id.btnProveedores).setOnClickListener {
+            startActivity(Intent(this, ProveedoresActivity::class.java))
+        }
+
         findViewById<LinearLayout>(R.id.btnCerrarSesion).setOnClickListener {
             SessionManager(this).clearToken()
             val intent = Intent(this, LoginActivity::class.java)

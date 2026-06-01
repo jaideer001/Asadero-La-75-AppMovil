@@ -1,5 +1,8 @@
 package com.example.asaderola75.api
 
+import com.example.asaderola75.models.CategoriasResponse
+import com.example.asaderola75.models.ProductosResponse
+import com.example.asaderola75.models.ProveedoresResponse
 import com.example.asaderola75.models.RolesResponse
 import com.example.asaderola75.models.UsuariosResponse
 import retrofit2.Response
@@ -70,6 +73,90 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Response<MessageResponse>
+
+    @GET("categorias")
+    suspend fun getCategorias(@Header("Authorization") token: String): Response<CategoriasResponse>
+
+    @POST("categorias")
+    suspend fun createCategoria(
+        @Header("Authorization") token: String,
+        @Body body: CreateCategoriaRequest
+    ): Response<MessageResponse>
+
+    @PUT("categorias/{id}")
+    suspend fun updateCategoria(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Body body: UpdateCategoriaRequest
+    ): Response<MessageResponse>
+
+    @DELETE("categorias/{id}")
+    suspend fun deleteCategoria(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
+
+    @POST("categorias/{id}/toggle-estado")
+    suspend fun toggleEstadoCategoria(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
+
+    @GET("proveedores")
+    suspend fun getProveedores(@Header("Authorization") token: String): Response<ProveedoresResponse>
+
+    @POST("proveedores")
+    suspend fun createProveedor(
+        @Header("Authorization") token: String,
+        @Body body: CreateProveedorRequest
+    ): Response<MessageResponse>
+
+    @PUT("proveedores/{id}")
+    suspend fun updateProveedor(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Body body: UpdateProveedorRequest
+    ): Response<MessageResponse>
+
+    @DELETE("proveedores/{id}")
+    suspend fun deleteProveedor(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
+
+    @POST("proveedores/{id}/toggle-estado")
+    suspend fun toggleEstadoProveedor(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
+
+    @GET("productos")
+    suspend fun getProductos(@Header("Authorization") token: String): Response<ProductosResponse>
+
+    @POST("productos")
+    suspend fun createProducto(
+        @Header("Authorization") token: String,
+        @Body body: CreateProductoRequest
+    ): Response<MessageResponse>
+
+    @PUT("productos/{id}")
+    suspend fun updateProducto(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Body body: UpdateProductoRequest
+    ): Response<MessageResponse>
+
+    @DELETE("productos/{id}")
+    suspend fun deleteProducto(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
+
+    @POST("productos/{id}/toggle-estado")
+    suspend fun toggleEstadoProducto(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
 }
 
 data class LoginRequest(
@@ -110,6 +197,58 @@ data class UpdateRolRequest(
     val nombre: String,
     val descripcion: String?,
     val status: Int
+)
+
+data class CreateCategoriaRequest(
+    val nombre: String,
+    val descripcion: String?,
+    val status: Int
+)
+
+data class UpdateCategoriaRequest(
+    val nombre: String,
+    val descripcion: String?,
+    val status: Int
+)
+
+data class CreateProveedorRequest(
+    val nombre: String,
+    val telefono: String?,
+    val direccion: String?,
+    val correo: String?,
+    val status: Int
+)
+
+data class UpdateProveedorRequest(
+    val nombre: String,
+    val telefono: String?,
+    val direccion: String?,
+    val correo: String?,
+    val status: Int
+)
+
+data class CreateProductoRequest(
+    val nombre: String,
+    val descripcion: String?,
+    val stock_actual: Double,
+    val unidad_medida: String,
+    val precio_compra: Double?,
+    val precio_venta: Double?,
+    val tipo: String,
+    val status: Int,
+    val id_categoria: Int
+)
+
+data class UpdateProductoRequest(
+    val nombre: String,
+    val descripcion: String?,
+    val stock_actual: Double,
+    val unidad_medida: String,
+    val precio_compra: Double?,
+    val precio_venta: Double?,
+    val tipo: String,
+    val status: Int,
+    val id_categoria: Int
 )
 
 data class MessageResponse(
