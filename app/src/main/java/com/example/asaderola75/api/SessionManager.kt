@@ -14,6 +14,14 @@ class SessionManager(context: Context) {
         return prefs.getString("token", null)
     }
 
+    fun saveRol(rol: Int) {
+        prefs.edit().putInt("rol", rol).apply()
+    }
+
+    fun getRol(): Int {
+        return prefs.getInt("rol", 1)
+    }
+
     fun clearToken() {
         prefs.edit().clear().apply()
     }

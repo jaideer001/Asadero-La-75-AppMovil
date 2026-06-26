@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Dashboard"/>
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_usuarios"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Usuarios"/>
+
+        <item
+            android:id="@+id/nav_roles"
+            android:icon="@android:drawable/ic_lock_lock"
+            android:title="Roles"/>
+
+        <item
+            android:id="@+id/nav_categorias"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="Categorías"/>
+
+        <item
+            android:id="@+id/nav_productos"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Productos"/>
+
+        <item
+            android:id="@+id/nav_proveedores"
+            android:icon="@android:drawable/ic_menu_send"
+            android:title="Proveedores"/>
+
+        <item
+            android:id="@+id/nav_ventas"
+            android:icon="@android:drawable/ic_menu_save"
+            android:title="Ventas"/>
+
+        <item
+            android:id="@+id/nav_compras"
+            android:icon="@android:drawable/ic_menu_upload"
+            android:title="Compras"/>
+
+    </group>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="Cerrar sesión"/>
+
+</menu>

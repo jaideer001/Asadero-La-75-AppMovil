@@ -15,49 +15,25 @@
         android:theme="@style/Theme.AsaderoLa75"
         android:usesCleartextTraffic="true">
 
-        <activity
-            android:name=".ui.screens.ProductosActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AsaderoLa75"/>
-
-        <activity
-            android:name=".ui.screens.ProveedoresActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AsaderoLa75"/>
-
-        <activity
-            android:name=".ui.screens.CategoriasActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AsaderoLa75"/>
-
-        <activity
-            android:name=".ui.screens.RolesActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AsaderoLa75"/>
-
-        <activity
-            android:name=".ui.screens.UsuariosActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AsaderoLa75"/>
-
-        <activity
-            android:name=".ui.screens.HomeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AsaderoLa75"/>
-
-        <activity
-            android:name=".ui.screens.LoginActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AsaderoLa75">
+        <activity android:name=".ui.screens.ComprasActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.NuevaCompraActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.DetalleCompraActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.VentasActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.NuevaVentaActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.DetalleVentaActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.ProductosActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.ProveedoresActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.CategoriasActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.RolesActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.UsuariosActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.HomeActivity" android:exported="false" android:theme="@style/Theme.AsaderoLa75"/>
+        <activity android:name=".ui.screens.LoginActivity" android:exported="true" android:theme="@style/Theme.AsaderoLa75">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"/>
+        <activity android:name=".MainActivity" android:exported="false"/>
 
     </application>
 

@@ -1,10 +1,14 @@
 package com.example.asaderola75.api
 
 import com.example.asaderola75.models.CategoriasResponse
+import com.example.asaderola75.models.CompraDetalleResponse
+import com.example.asaderola75.models.ComprasResponse
 import com.example.asaderola75.models.ProductosResponse
 import com.example.asaderola75.models.ProveedoresResponse
 import com.example.asaderola75.models.RolesResponse
 import com.example.asaderola75.models.UsuariosResponse
+import com.example.asaderola75.models.VentaDetalleResponse
+import com.example.asaderola75.models.VentasResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -157,6 +161,48 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Response<MessageResponse>
+
+    @GET("ventas")
+    suspend fun getVentas(@Header("Authorization") token: String): Response<VentasResponse>
+
+    @GET("ventas/{id}")
+    suspend fun getVenta(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<VentaDetalleResponse>
+
+    @POST("ventas")
+    suspend fun createVenta(
+        @Header("Authorization") token: String,
+        @Body body: CreateVentaRequest
+    ): Response<MessageResponse>
+
+    @DELETE("ventas/{id}")
+    suspend fun anularVenta(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
+
+    @GET("compras")
+    suspend fun getCompras(@Header("Authorization") token: String): Response<ComprasResponse>
+
+    @GET("compras/{id}")
+    suspend fun getCompra(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<CompraDetalleResponse>
+
+    @POST("compras")
+    suspend fun createCompra(
+        @Header("Authorization") token: String,
+        @Body body: CreateCompraRequest
+    ): Response<MessageResponse>
+
+    @DELETE("compras/{id}")
+    suspend fun anularCompra(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<MessageResponse>
 }
 
 data class LoginRequest(
@@ -166,7 +212,15 @@ data class LoginRequest(
 
 data class LoginResponse(
     val access_token: String,
-    val message: String
+    val message: String,
+    val user: UserLogin?
+)
+
+data class UserLogin(
+    val id: Int,
+    val nombre: String,
+    val correo: String,
+    val rol: Int
 )
 
 data class CreateUsuarioRequest(
@@ -249,6 +303,28 @@ data class UpdateProductoRequest(
     val tipo: String,
     val status: Int,
     val id_categoria: Int
+)
+
+data class CreateVentaRequest(
+    val productos: List<ProductoVentaItem>
+)
+
+data class ProductoVentaItem(
+    val id_producto: Int,
+    val cantidad: Int
+)
+
+data class CreateCompraRequest(
+    val id_proveedor: Int,
+    val fecha: String,
+    val total_compra: Double,
+    val productos: List<ProductoCompraItem>
+)
+
+data class ProductoCompraItem(
+    val id_producto: Int,
+    val cantidad: Int,
+    val precio_unitario: Double
 )
 
 data class MessageResponse(

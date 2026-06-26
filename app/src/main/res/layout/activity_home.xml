@@ -2,20 +2,23 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/carbon">
+    android:background="@color/carbon"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- CABECERA -->
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:orientation="horizontal"
+            android:layout_height="170dp"
+            android:background="#0B1120"
             android:gravity="center_vertical"
-            android:paddingHorizontal="24dp"
-            android:background="@drawable/bg_login_header">
+            android:orientation="horizontal"
+            android:padding="24dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -27,210 +30,263 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🍗 Asadero La 75"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:textColor="@android:color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bienvenido, Admin"
-                    android:textSize="13sp"
-                    android:textColor="#CCFFFFFF"/>
+                    android:layout_marginTop="6dp"
+                    android:text="Bienvenido, Administrador"
+                    android:textColor="#AEB8D0"
+                    android:textSize="14sp"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/btnCerrarSesion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="#1A2238"
                 android:gravity="center"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:text="⏻"
-                    android:textSize="20sp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:background="@drawable/bg_logout_btn"/>
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Salir"
-                    android:textSize="10sp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#CCFFFFFF"/>
+                    android:text="⏻"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
+        <!-- MODULOS -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="18dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Módulos"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_light"
-                android:layout_marginBottom="16dp"/>
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"/>
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2">
+                android:layout_marginTop="15dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:useDefaultMargins="true">
+
+                <!-- USUARIOS -->
 
                 <LinearLayout
                     android:id="@+id/btnUsuarios"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
                     android:background="@drawable/bg_card_modern"
-                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="👥"
-                        android:textSize="44sp"
-                        android:layout_marginBottom="12dp"/>
+                        android:textSize="46sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="Usuarios"
-                        android:textSize="14sp"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_light"/>
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
+
+                <!-- ROLES -->
 
                 <LinearLayout
                     android:id="@+id/btnRoles"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
                     android:background="@drawable/bg_card_modern"
-                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="🔑"
-                        android:textSize="44sp"
-                        android:layout_marginBottom="12dp"/>
+                        android:textSize="46sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="Roles"
-                        android:textSize="14sp"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_light"/>
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
+
+                <!-- CATEGORIAS -->
 
                 <LinearLayout
                     android:id="@+id/btnProductos"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
                     android:background="@drawable/bg_card_modern"
-                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="🏷️"
-                        android:textSize="44sp"
-                        android:layout_marginBottom="12dp"/>
+                        android:textSize="46sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="Categorías"
-                        android:textSize="14sp"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_light"/>
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
+
+                <!-- VENTAS -->
 
                 <LinearLayout
                     android:id="@+id/btnVentas"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
                     android:background="@drawable/bg_card_modern"
-                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <TextView
+                        android:text="🧾"
+                        android:textSize="46sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🛍️"
-                        android:textSize="44sp"
-                        android:layout_marginBottom="12dp"/>
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Productos"
-                        android:textSize="14sp"
+                        android:text="Ventas"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_light"/>
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
+
+                <!-- PROVEEDORES -->
 
                 <LinearLayout
                     android:id="@+id/btnProveedores"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="6dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
                     android:background="@drawable/bg_card_modern"
-                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="🚚"
-                        android:textSize="44sp"
-                        android:layout_marginBottom="12dp"/>
+                        android:textSize="46sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="Proveedores"
-                        android:textSize="14sp"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_light"/>
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <!-- PRODUCTOS -->
+
+                <LinearLayout
+                    android:id="@+id/btnProductosMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/bg_card_modern"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:text="🛍️"
+                        android:textSize="46sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="Productos"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <!-- COMPRAS -->
+
+                <LinearLayout
+                    android:id="@+id/btnCompras"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/bg_card_modern"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:text="🛒"
+                        android:textSize="46sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="Compras"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 

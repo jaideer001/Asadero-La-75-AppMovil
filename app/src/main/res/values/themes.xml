@@ -1,24 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.AsaderoLa75" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@color/carbon</item>
-        <item name="android:textColor">@color/text_light</item>
-        <item name="android:statusBarColor">@color/accent_blue</item>
-        <item name="android:navigationBarColor">@color/white</item>
-        <item name="colorPrimary">@color/accent_blue</item>
-        <item name="colorPrimaryDark">@color/accent_blue</item>
-        <item name="colorAccent">@color/accent_blue</item>
+
+    <!-- Tema principal -->
+    <style name="Theme.AsaderoLa75" parent="Theme.Material3.Dark.NoActionBar">
+
+        <!-- Colores principales -->
+        <item name="colorPrimary">#3B82F6</item>
+        <item name="colorPrimaryContainer">#1A2238</item>
+        <item name="colorSecondary">#22C55E</item>
+
+        <!-- Fondo -->
+        <item name="android:windowBackground">#0B1120</item>
+
+        <!-- Barra de estado -->
+        <item name="android:statusBarColor">#0B1120</item>
+
+        <!-- Barra de navegación -->
+        <item name="android:navigationBarColor">#0B1120</item>
+
+        <!-- Texto -->
+        <item name="android:textColor">#FFFFFF</item>
+
     </style>
 
-    <style name="DialogOscuro" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">@color/white</item>
-        <item name="android:textColor">@color/text_light</item>
-        <item name="colorPrimary">@color/accent_blue</item>
-        <item name="colorAccent">@color/accent_blue</item>
+    <!-- Diálogos -->
+
+    <style name="DialogOscuro" parent="Theme.Material3.Dark.Dialog.Alert">
+
+        <item name="android:background">#1A2238</item>
+
+        <item name="android:textColor">#FFFFFF</item>
+
+        <item name="colorPrimary">#3B82F6</item>
+
     </style>
+
+    <!-- Spinner -->
 
     <style name="SpinnerOscuro" parent="Widget.AppCompat.Spinner">
-        <item name="android:background">@color/carbon3</item>
-        <item name="android:textColor">@color/text_light</item>
+
+        <item name="android:background">#1A2238</item>
+
+        <item name="android:textColor">#FFFFFF</item>
+
     </style>
+
+    <style name="Base.Theme.AsaderoLa75"
+        parent="Theme.Material3.Dark.NoActionBar"/>
+
 </resources>

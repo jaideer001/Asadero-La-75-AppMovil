@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="carbon">#F5F6FA</color>
-    <color name="carbon2">#FFFFFF</color>
-    <color name="carbon3">#EEEEF5</color>
-    <color name="fire">#FF6B1A</color>
-    <color name="fire_dark">#CC4F00</color>
-    <color name="accent_blue">#6C63FF</color>
-    <color name="accent_teal">#00C9A7</color>
-    <color name="accent_pink">#FF6584</color>
-    <color name="text_light">#1A1A2E</color>
-    <color name="text_muted">#8B8FA8</color>
-    <color name="active_bg">#E8F8F0</color>
-    <color name="active_text">#00A86B</color>
-    <color name="inactive_bg">#FFE8E8</color>
-    <color name="inactive_text">#FF4444</color>
-    <color name="card_bg">#FFFFFF</color>
+
+    <!-- Fondo principal -->
+    <color name="carbon">#0B1120</color>
+
+    <!-- Tarjetas -->
+    <color name="carbon2">#1A2238</color>
+
+    <!-- Fondo secundario -->
+    <color name="carbon3">#111827</color>
+
+    <!-- Colores principales -->
+    <color name="fire">#F59E0B</color>
+    <color name="fire_dark">#D97706</color>
+
+    <!-- Acentos -->
+    <color name="accent_blue">#3B82F6</color>
+    <color name="accent_teal">#22C55E</color>
+    <color name="accent_pink">#EF4444</color>
+
+    <!-- Texto -->
+    <color name="text_light">#FFFFFF</color>
+    <color name="text_muted">#94A3B8</color>
+
+    <!-- Estados -->
+    <color name="active_bg">#163A2D</color>
+    <color name="active_text">#22C55E</color>
+
+    <color name="inactive_bg">#3B1F1F</color>
+    <color name="inactive_text">#EF4444</color>
+
+    <!-- Tarjetas -->
+    <color name="card_bg">#1A2238</color>
+
+    <!-- Blanco -->
     <color name="white">#FFFFFF</color>
+
 </resources>

@@ -31,6 +31,10 @@ class LoginActivity : AppCompatActivity() {
         viewModel.token.observe(this) { token ->
             Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
             SessionManager(this).saveToken(token)
+        }
+
+        viewModel.rol.observe(this) { rol ->
+            SessionManager(this).saveRol(rol)
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()

@@ -12,6 +12,9 @@ class AuthViewModel : ViewModel() {
     private val _token = MutableLiveData<String>()
     val token: LiveData<String> = _token
 
+    private val _rol = MutableLiveData<Int>()
+    val rol: LiveData<Int> = _rol
+
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
@@ -21,6 +24,7 @@ class AuthViewModel : ViewModel() {
                 val response = ApiClient.instance.login(LoginRequest(email, password))
                 if (response.isSuccessful) {
                     _token.value = response.body()?.access_token
+                    _rol.value = response.body()?.user?.rol ?: 1
                 } else {
                     _error.value = "Credenciales incorrectas"
                 }
