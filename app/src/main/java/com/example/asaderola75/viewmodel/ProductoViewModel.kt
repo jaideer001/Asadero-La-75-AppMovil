@@ -9,6 +9,8 @@ import com.example.asaderola75.api.CreateProductoRequest
 import com.example.asaderola75.api.UpdateProductoRequest
 import com.example.asaderola75.models.Producto
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.Response
 
 class ProductoViewModel : ViewModel() {
     private val _productos = MutableLiveData<List<Producto>>()
@@ -20,6 +22,33 @@ class ProductoViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    // Método para mapear errores de validación (ProductoRequest HTTP 422) o mensajes directos
+    private fun <T> obtenerMensajeError(response: Response<T>, mensajePorDefecto: String): String {
+        return try {
+            val errorBody = response.errorBody()?.string()
+            if (!errorBody.isNullOrEmpty()) {
+                val jsonObject = JSONObject(errorBody)
+
+                when {
+                    // Mapea el mapa de errores enviado por el FormRequest de Laravel
+                    jsonObject.has("errors") -> {
+                        val errorsObj = jsonObject.getJSONObject("errors")
+                        val primerCampo = errorsObj.keys().next()
+                        val listaErrores = errorsObj.getJSONArray(primerCampo)
+                        listaErrores.getString(0)
+                    }
+                    jsonObject.has("message") -> jsonObject.getString("message")
+                    jsonObject.has("error") -> jsonObject.getString("error")
+                    else -> mensajePorDefecto
+                }
+            } else {
+                "$mensajePorDefecto (${response.code()})"
+            }
+        } catch (e: Exception) {
+            mensajePorDefecto
+        }
+    }
+
     fun getProductos(token: String) {
         viewModelScope.launch {
             try {
@@ -27,10 +56,10 @@ class ProductoViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _productos.value = response.body()?.data
                 } else {
-                    _error.value = "Error: ${response.code()}"
+                    _error.value = obtenerMensajeError(response, "Error al obtener productos")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -43,10 +72,10 @@ class ProductoViewModel : ViewModel() {
                     _mensaje.value = "Producto creado correctamente"
                     getProductos(token)
                 } else {
-                    _error.value = "Error al crear producto"
+                    _error.value = obtenerMensajeError(response, "Error al crear producto")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -59,10 +88,10 @@ class ProductoViewModel : ViewModel() {
                     _mensaje.value = "Producto actualizado correctamente"
                     getProductos(token)
                 } else {
-                    _error.value = "Error al actualizar"
+                    _error.value = obtenerMensajeError(response, "Error al actualizar producto")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -75,10 +104,10 @@ class ProductoViewModel : ViewModel() {
                     _mensaje.value = "Producto eliminado correctamente"
                     getProductos(token)
                 } else {
-                    _error.value = "No se puede eliminar el producto"
+                    _error.value = obtenerMensajeError(response, "No se puede eliminar el producto")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -91,10 +120,10 @@ class ProductoViewModel : ViewModel() {
                     _mensaje.value = response.body()?.message ?: "Estado actualizado"
                     getProductos(token)
                 } else {
-                    _error.value = "Error al cambiar estado"
+                    _error.value = obtenerMensajeError(response, "Error al cambiar estado")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }

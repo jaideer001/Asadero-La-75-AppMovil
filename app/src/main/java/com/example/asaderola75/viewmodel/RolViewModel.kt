@@ -9,6 +9,8 @@ import com.example.asaderola75.api.CreateRolRequest
 import com.example.asaderola75.api.UpdateRolRequest
 import com.example.asaderola75.models.Rol
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.Response
 
 class RolViewModel : ViewModel() {
     private val _roles = MutableLiveData<List<Rol>>()
@@ -20,6 +22,34 @@ class RolViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    // Extrae los errores de validación de Laravel (FormRequest) o el mensaje directo
+    private fun <T> obtenerMensajeError(response: Response<T>, mensajePorDefecto: String): String {
+        return try {
+            val errorBody = response.errorBody()?.string()
+            if (!errorBody.isNullOrEmpty()) {
+                val jsonObject = JSONObject(errorBody)
+
+                when {
+                    // Si Laravel responde con errores de validación (FormRequest -> 422 Unprocessable Entity)
+                    jsonObject.has("errors") -> {
+                        val errorsObj = jsonObject.getJSONObject("errors")
+                        val primerCampo = errorsObj.keys().next()
+                        val listaErrores = errorsObj.getJSONArray(primerCampo)
+                        listaErrores.getString(0)
+                    }
+                    // Si devuelve un mensaje directo en la raíz del JSON
+                    jsonObject.has("message") -> jsonObject.getString("message")
+                    jsonObject.has("error") -> jsonObject.getString("error")
+                    else -> mensajePorDefecto
+                }
+            } else {
+                "$mensajePorDefecto (${response.code()})"
+            }
+        } catch (e: Exception) {
+            mensajePorDefecto
+        }
+    }
+
     fun getRoles(token: String) {
         viewModelScope.launch {
             try {
@@ -27,10 +57,10 @@ class RolViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _roles.value = response.body()?.data
                 } else {
-                    _error.value = "Error: ${response.code()}"
+                    _error.value = obtenerMensajeError(response, "Error al obtener roles")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -43,10 +73,10 @@ class RolViewModel : ViewModel() {
                     _mensaje.value = "Rol creado correctamente"
                     getRoles(token)
                 } else {
-                    _error.value = "Error al crear rol"
+                    _error.value = obtenerMensajeError(response, "Error al crear rol")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -59,10 +89,10 @@ class RolViewModel : ViewModel() {
                     _mensaje.value = "Rol actualizado correctamente"
                     getRoles(token)
                 } else {
-                    _error.value = "Error al actualizar"
+                    _error.value = obtenerMensajeError(response, "Error al actualizar rol")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -75,10 +105,10 @@ class RolViewModel : ViewModel() {
                     _mensaje.value = "Rol eliminado correctamente"
                     getRoles(token)
                 } else {
-                    _error.value = "No se puede eliminar, está asociado a usuarios"
+                    _error.value = obtenerMensajeError(response, "No se puede eliminar el rol")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -91,10 +121,10 @@ class RolViewModel : ViewModel() {
                     _mensaje.value = response.body()?.message ?: "Estado actualizado"
                     getRoles(token)
                 } else {
-                    _error.value = "Error al cambiar estado"
+                    _error.value = obtenerMensajeError(response, "Error al cambiar estado")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }

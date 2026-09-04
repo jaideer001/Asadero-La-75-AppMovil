@@ -9,6 +9,8 @@ import com.example.asaderola75.api.CreateUsuarioRequest
 import com.example.asaderola75.api.UpdateUsuarioRequest
 import com.example.asaderola75.models.Usuario
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.Response
 
 class UsuarioViewModel : ViewModel() {
     private val _usuarios = MutableLiveData<List<Usuario>>()
@@ -20,6 +22,26 @@ class UsuarioViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    // Función auxiliar para leer el cuerpo de error JSON devuelto por el backend
+    private fun <T> obtenerMensajeError(response: Response<T>, mensajePorDefecto: String): String {
+        return try {
+            val errorBody = response.errorBody()?.string()
+            if (!errorBody.isNullOrEmpty()) {
+                val jsonObject = JSONObject(errorBody)
+                // Intenta obtener la clave "message" o "error" enviada desde la API
+                when {
+                    jsonObject.has("message") -> jsonObject.getString("message")
+                    jsonObject.has("error") -> jsonObject.getString("error")
+                    else -> mensajePorDefecto
+                }
+            } else {
+                "$mensajePorDefecto (${response.code()})"
+            }
+        } catch (e: Exception) {
+            mensajePorDefecto
+        }
+    }
+
     fun getUsuarios(token: String) {
         viewModelScope.launch {
             try {
@@ -27,10 +49,10 @@ class UsuarioViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _usuarios.value = response.body()?.data
                 } else {
-                    _error.value = "Error: ${response.code()}"
+                    _error.value = obtenerMensajeError(response, "Error al obtener usuarios")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -43,10 +65,10 @@ class UsuarioViewModel : ViewModel() {
                     _mensaje.value = "Usuario creado correctamente"
                     getUsuarios(token)
                 } else {
-                    _error.value = "Error al crear usuario"
+                    _error.value = obtenerMensajeError(response, "Error al crear usuario")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -59,10 +81,10 @@ class UsuarioViewModel : ViewModel() {
                     _mensaje.value = "Usuario actualizado correctamente"
                     getUsuarios(token)
                 } else {
-                    _error.value = "Error al actualizar"
+                    _error.value = obtenerMensajeError(response, "Error al actualizar usuario")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -75,10 +97,10 @@ class UsuarioViewModel : ViewModel() {
                     _mensaje.value = "Usuario eliminado correctamente"
                     getUsuarios(token)
                 } else {
-                    _error.value = "Error al eliminar"
+                    _error.value = obtenerMensajeError(response, "Error al eliminar usuario")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -91,10 +113,10 @@ class UsuarioViewModel : ViewModel() {
                     _mensaje.value = response.body()?.message ?: "Estado actualizado"
                     getUsuarios(token)
                 } else {
-                    _error.value = "Error al cambiar estado"
+                    _error.value = obtenerMensajeError(response, "Error al cambiar estado")
                 }
             } catch (e: Exception) {
-                _error.value = "Sin conexión"
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }

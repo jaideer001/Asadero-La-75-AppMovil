@@ -9,6 +9,8 @@ import com.example.asaderola75.api.CreateVentaRequest
 import com.example.asaderola75.models.Venta
 import com.example.asaderola75.models.VentaDetalle
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.Response
 
 class VentaViewModel : ViewModel() {
     private val _ventas = MutableLiveData<List<Venta>>()
@@ -23,6 +25,33 @@ class VentaViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    // Método para parsear errores de validación de Laravel (VentaRequest) o excepciones personalizadas
+    private fun <T> obtenerMensajeError(response: Response<T>, mensajePorDefecto: String): String {
+        return try {
+            val errorBody = response.errorBody()?.string()
+            if (!errorBody.isNullOrEmpty()) {
+                val jsonObject = JSONObject(errorBody)
+
+                when {
+                    // Mapea errores de validación de VentaRequest (e.g. productos duplicados, sin stock, etc.)
+                    jsonObject.has("errors") -> {
+                        val errorsObj = jsonObject.getJSONObject("errors")
+                        val primerCampo = errorsObj.keys().next()
+                        val listaErrores = errorsObj.getJSONArray(primerCampo)
+                        listaErrores.getString(0)
+                    }
+                    jsonObject.has("message") -> jsonObject.getString("message")
+                    jsonObject.has("error") -> jsonObject.getString("error")
+                    else -> mensajePorDefecto
+                }
+            } else {
+                "$mensajePorDefecto (${response.code()})"
+            }
+        } catch (e: Exception) {
+            mensajePorDefecto
+        }
+    }
+
     fun getVentas(token: String) {
         viewModelScope.launch {
             try {
@@ -30,10 +59,10 @@ class VentaViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _ventas.value = response.body()?.data
                 } else {
-                    _error.value = "Error: ${response.code()}"
+                    _error.value = obtenerMensajeError(response, "Error al obtener las ventas")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -45,10 +74,10 @@ class VentaViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _ventaDetalle.value = response.body()?.data
                 } else {
-                    _error.value = "Error: ${response.code()}"
+                    _error.value = obtenerMensajeError(response, "Error al obtener el detalle de la venta")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -61,10 +90,10 @@ class VentaViewModel : ViewModel() {
                     _mensaje.value = "Venta registrada correctamente"
                     getVentas(token)
                 } else {
-                    _error.value = "Error al registrar venta"
+                    _error.value = obtenerMensajeError(response, "Error al registrar la venta")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
@@ -77,10 +106,10 @@ class VentaViewModel : ViewModel() {
                     _mensaje.value = "Venta anulada correctamente"
                     getVentas(token)
                 } else {
-                    _error.value = "Error al anular venta"
+                    _error.value = obtenerMensajeError(response, "Error al anular la venta")
                 }
             } catch (e: Exception) {
-                _error.value = e.message ?: e.toString()
+                _error.value = "Error de red: ${e.localizedMessage ?: "Sin conexión"}"
             }
         }
     }
